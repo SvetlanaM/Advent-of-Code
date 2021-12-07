@@ -30,13 +30,12 @@ def sum_of_fuel(positions: list[int], target: int) -> int:
         sum += temp
     return sum
 
-
 def sum_fuel_dynamic(positions: list[int], target: int) -> int:
     sum = 0
     for i in positions:
-        delta = abs(target-i)
-        sum = int(sum + (delta * (delta +1 ) / 2))
-    return sum
+        temp = abs(i - target) * (abs(target - i) + 1) / 2
+        sum += temp
+    return int(sum)
 
 def traverse_for_min(positions: list[int], initial_position: int, compute_fuel: Callable[[int], int]) -> int:
     
@@ -55,7 +54,8 @@ def traverse_for_min(positions: list[int], initial_position: int, compute_fuel: 
     return min_fuel
 
 estimate_first:int = int(median())
+estimate_second = int(average())
 result_first:int = traverse_for_min(positions=sorted_array, initial_position=estimate_first, compute_fuel=sum_of_fuel)
-result_second:int = traverse_for_min(positions=sorted_array, initial_position=estimate_first, compute_fuel=sum_fuel_dynamic)
+result_second:int = traverse_for_min(positions=sorted_array, initial_position=estimate_second, compute_fuel=sum_fuel_dynamic)
 print(result_first)
 print(result_second)
