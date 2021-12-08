@@ -39,18 +39,7 @@ def sum_fuel_dynamic(positions: list[int], target: int) -> int:
 
 def traverse_for_min(positions: list[int], initial_position: int, compute_fuel: Callable[[int], int]) -> int:
     
-    min_fuel = compute_fuel(positions, initial_position)
-    current_position = initial_position + 1
-    current_fuel = min_fuel
-    
-    while True:
-        current_fuel = compute_fuel(positions, current_position)
-        if current_fuel < min_fuel:
-            min_fuel = current_fuel
-        current_position += 1
-        if (current_fuel < min_fuel or current_position <= max(sorted_array)):
-            break
-        
+    min_fuel = compute_fuel(positions, initial_position)        
     return min_fuel
 
 estimate_first:int = int(median())
