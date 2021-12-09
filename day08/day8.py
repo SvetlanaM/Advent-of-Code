@@ -1,4 +1,7 @@
-with open("day08/input_8.txt", encoding='utf-8') as file:
+import time
+start_time = time.time()
+
+with open("day08/input.txt", encoding='utf-8') as file:
     data = file.read().splitlines()
 
 test_data = {'abcdeg': 6, 'abcfg': 3, 'bcdf': 4, 'abdefg': 0, 'abcdg': 5, 'abcdefg': 8, 'acefg': 2, 'abcdfg': 9, 'abf': 7, 'bf': 1}
@@ -69,9 +72,9 @@ def part_two():
                 number_of_oc.append(final_number)
             c += 1
             
-    
+    print("Process finished %s seconds" % (time.time() - start_time))
     return sum([int(line) for line in number_of_oc])
 
-print("Part", part_one())
-print("Part", part_two())
+print("Part 1:", part_one())
+print("Part 2:", part_two())
 
