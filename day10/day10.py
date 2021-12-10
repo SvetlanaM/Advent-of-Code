@@ -5,11 +5,8 @@ opening_chars = '([{<'
 closing_chars = ')]}>'
 sum_of_corrupted = 0
 mapping_dict = {'(' : [')', 3], '[' : [']', 57], '{' : ['}', 1197], '<' : ['>', 25137]}
-
 mapping_dict_sums = {')' : 3, ']' : 57, '}' : 1197, '>' :  25137}
-
 mapping_dict_part2 = {'(' : 1, '[' : 2, '{' : 3, '<' :  4}
-
 total_points = []
 
 for line in data:
@@ -30,7 +27,7 @@ for line in data:
     if len(empty_array) != 0:
         total_points.append(acc)
 
-print(total_points)
+
 middle_key = int(len(total_points)/2)
 middle_score = sorted(total_points)[middle_key]
 print(middle_score)
