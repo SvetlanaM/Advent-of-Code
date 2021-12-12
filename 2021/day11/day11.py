@@ -12,11 +12,11 @@ stacked_list = []
 def update_number(x, y):
     if input_array[x][y] != 0:
         input_array[x][y] += 1
-        
+
     if input_array[x][y] == 10:
         stacked_list.append((x, y))
    
-    
+
 for i in range(0, 100):
     for row in range(len(input_array)):
         for col in range(len(input_array[row])):
@@ -31,7 +31,7 @@ for i in range(0, 100):
                 input_array[x][y] = 0
 
                 for pair in itertools.product([-1, 0, 1], [-1, 0, 1]):
-                    if ((x+pair[0] >= 0 and x+pair[0] <= len(input_array)-1) and (y+pair[1] >= 0 and y+pair[1] < len(input_array)-1)):
+                    if ((x != 0 or y != 0) and (x+pair[0] >= 0 and x+pair[0] <= len(input_array)-1) and (y+pair[1] >= 0 and y+pair[1] < len(input_array)-1)):
                         update_number(x+pair[0], y+pair[1])
         
                   
