@@ -31,8 +31,8 @@ for i in range(0, 100):
                 input_array[x][y] = 0
 
                 for pair in itertools.product([-1, 0, 1], [-1, 0, 1]):
-                    if ((x != 0 or y != 0) and (x+pair[0] >= 0 and x+pair[0] <= len(input_array)-1) and (y+pair[1] >= 0 and y+pair[1] < len(input_array)-1)):
+                    if ((x+pair[0] >= 0 and x+pair[0] < len(input_array)) and (y+pair[1] >= 0 and y+pair[1] < len(input_array))):
                         update_number(x+pair[0], y+pair[1])
-        
-                  
+
+print(input_array)         
 print(number_of_flash)
