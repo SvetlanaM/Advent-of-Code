@@ -21,13 +21,11 @@ def get_max_number(key):
 
 max_x = get_max_number(0)
 max_y = get_max_number(1)
-grid = [[' ' for i in range(max_x+1)] for j in range(max_y+1)]
+grid = [[' ' for _ in range(max_x+1)] for _ in range(max_y+1)]
 
 def create_grid():
-    for key, line in enumerate(arr_of_numbers):
-        grid[int(line.split(",")[1])][int(line.split(",")[0])] = "█"
-        pass
-    
+    for line in arr_of_numbers:
+        grid[int(line.split(",")[1])][int(line.split(",")[0])] = "█"    
     return grid
         
 create_grid()
@@ -37,31 +35,24 @@ def get_direction(line):
     else:
         return 'y'
 
-
-
 def get_folding(line):
     temp = re.findall(r'\b\d+\b', arr_of_directions[line])
-    fold_by_y = int(temp[0])
-    return fold_by_y
+    fold_by = int(temp[0])
+    return fold_by
 
-def folded_number(arr):
-    if len(arr) % 2 == 0:
-        return 0
-    else:
-        return 1
 
-def create_folded_grid(grid_down, grid_up, fold_by):
-    for key, row in enumerate(grid_down):
+def create_folded_grid(grid_after, grid_before, fold_by):
+    for key, row in enumerate(grid_after):
         for col_key, col in enumerate(row):
             if col == "█":
                 temp = abs(key-fold_by+1)
-                grid_up[temp][col_key] = "█"
-    return grid_up
+                grid_before[temp][col_key] = "█"
+    return grid_before
 
 
 def folding():
     final_grid = create_grid()
-    for key, i in enumerate(arr_of_directions):
+    for key, _ in enumerate(arr_of_directions):
         direction = get_direction(key)
         fold_by_y = get_folding(key)
 
@@ -76,7 +67,7 @@ def folding():
                 elif last_direction == 'x':
                     for _ in range(0,3):
                         final_grid = [list(i) for i in zip(*final_grid)]
-                        
+
         folded_grid_up = final_grid[:][0:fold_by_y]
         folded_grid_down = final_grid[:][fold_by_y+1:len(final_grid)]
         final_grid = create_folded_grid(folded_grid_down, folded_grid_up, fold_by_y)
