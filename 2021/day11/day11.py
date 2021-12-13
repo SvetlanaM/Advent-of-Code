@@ -1,5 +1,4 @@
 from itertools import product
-import itertools
 with open("2021/day11/input.txt", encoding='utf-8') as file:
     data = file.read().splitlines()
 data = [int(line) for line in data]
@@ -30,7 +29,7 @@ for i in range(0, 100):
                 x, y = stacked_list.pop()
                 input_array[x][y] = 0
 
-                for pair in itertools.product([-1, 0, 1], [-1, 0, 1]):
+                for pair in product([-1, 0, 1], [-1, 0, 1]):
                     if ((x+pair[0] >= 0 and x+pair[0] < len(input_array)) and (y+pair[1] >= 0 and y+pair[1] < len(input_array))):
                         update_number(x+pair[0], y+pair[1])
 
