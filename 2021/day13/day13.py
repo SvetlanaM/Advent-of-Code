@@ -28,8 +28,6 @@ def create_grid():
         grid[int(line.split(",")[1])][int(line.split(",")[0])] = "█"    
     return grid
         
-create_grid()
-
 def get_direction(line):
     if 'x' in arr_of_directions[line]: return 'x'
     else:
