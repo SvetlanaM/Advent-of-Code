@@ -15,7 +15,7 @@ for instruction in instructions:
 
 pattern = re.compile('|'.join(r'(?=(' + key + r'))' for key in instruction_dict.keys() if key != ' '))
 
-new_word = "NNCB"
+new_word = input_word[0]
 
 for j in range(0, 10):
     print(new_word)
