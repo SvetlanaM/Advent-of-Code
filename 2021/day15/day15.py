@@ -18,13 +18,26 @@ input_array_copy[0][0] = 0
 original_length = len(input_array_copy)
 input_array_new = input_array
 
+sorted_stack = []
+
+
+new_arr = input_array.copy()
+for i in range(0,4):
+    for x in range(0, len(new_arr)):
+        new_arr[x] = new_arr[x] + list(map(lambda x: x+1 if (x+1 < 10) else 1, new_arr[x][-10:]))
+    
+new_arr2 = input_array.copy()
+for i in range(0,4):
+    for x in range(0, len(new_arr2)):
+        new_row = list(map(lambda x: x+1 if (x+1 < 10) else 1, new_arr[x]))
+        new_arr.append(new_row)
+
 
 while stack:
+
+    stack = [x for _,x in sorted(zip(map(lambda x: input_array_copy[x[0]][x[1]], stack), stack))]
     cur_position = stack.pop(0)
     x, y = cur_position
-
-    # if input_array[x][y] == None:
-    #     continue
 
     left = y-1
     right = y+1
