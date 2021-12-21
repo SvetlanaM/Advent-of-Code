@@ -1,20 +1,23 @@
 import re
+
 sample_data = 'x=20..30, y=-10..-5'
 
 with open("2021/day17/input.txt") as file:
     data = file.read()
 
-numbers = re.findall(r'[-]?\d+', sample_data)
+numbers = re.findall(r'[-]?\d+', data)
 
 input_array = [int(str(number)) for number in numbers]
 x_min, x_max, y_max, y_min = input_array
 
 max_possible_point = (y_max*(y_max+1))/2
 
+print("part1:", max_possible_point)
+
+print(x_min)
 array_of_x_numbers = []
 array_of_all_combinations = []
 
-print(max_possible_point)
 
 def get_step_result(number):
   return (number * (number+1)) / 2
@@ -26,25 +29,12 @@ def get_min_acceptable_value():
       array_of_x_numbers.append(i)
 
 
-get_min_acceptable_value()
-
 def check_point_position(x, y):
   down_from_point = (x-y)-1
   down_pos = get_step_result(down_from_point)
-  x_pos = get_step_result(x)
   y_pos = get_step_result(y)
   res = y_pos - down_pos
-  if res <= get_min_acceptable_value:
-    array_of_all_combinations.append((x, y))
-
-
-def check_x_point_position(x, y):
-  total_sum = get_step_result(x)
-  diff = x-6
-  max_y = y-diff
-  point = get_step_result(max_y)
-  print(x, y, diff, max_y, point)
-  if point < 0:
+  if res <= max_possible_point:
     array_of_all_combinations.append((x, y))
 
 
@@ -52,13 +42,45 @@ for i in array_of_x_numbers:
   for j in range(0, abs(y_max)):
     check_point_position(i, j)
 
-
-# for i in range(array_of_x_numbers[1]+1, x_max):
-#   for j in range(0, abs(y_max)):
-#     check_x_point_position(i, j)
-
-print(array_of_all_combinations)
+get_min_acceptable_value()
 
 
+def fit_target_area(pos_x, pos_y, x1, y1):
+  x = 0
+  y = 0
 
+  while x < max(x1) and y > min(y1):
+    x += pos_x
+    y += pos_y
+    if pos_x > 0:
+      pos_x -= 1
+    pos_y -= 1
+
+    if x in x1 and y in y1:
+            return True
+
+    return False
+
+def find_target():
+    v_x_min = array_of_x_numbers[-1] + 1
+
+ 
+    v_x_r = range(v_x_min,x_max+ 1)
+
+    v_y_r = range(y_min, y_max)
+
+    print(v_x_r)
+
+    count_of_hits = 0
+
+    for v_x in v_x_r:
+        for v_y in v_y_r:
+            if fit_target_area(v_x, v_y, x_max, y_max):
+                count_of_hits += 1
+
+    print(count_of_hits)
+    return count_of_hits
+
+
+find_target()
 
