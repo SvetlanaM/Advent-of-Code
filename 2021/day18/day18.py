@@ -219,7 +219,6 @@ new_data = data.copy()
 for a, b in enumerate(new_data):
     data.sort(key=b.__eq__)
     for i in range(len(data)-1):
-        print(i)
         temp = 0
         first_root = Pair(None)
         create_pair(first_root, b[1:-1], None)
