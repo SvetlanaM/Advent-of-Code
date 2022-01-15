@@ -14,7 +14,6 @@ for instruction in instructions:
 
 
 pattern = re.compile('|'.join(r'(?=(' + key + r'))' for key in instruction_dict.keys() if key != ' '))
-
 new_word = input_word[0]
 
 for j in range(0, 10):
@@ -22,6 +21,5 @@ for j in range(0, 10):
     for i in range(1,4):
         res = re.sub(pattern, lambda x: instruction_dict[x.group(i)], new_word[i-1:i+1])
         new_word += res[0:2]
-
 
 print(new_word)

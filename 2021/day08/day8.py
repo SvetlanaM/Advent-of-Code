@@ -1,4 +1,5 @@
 import time
+from typing import TypedDict
 start_time = time.time()
 
 with open("day08/input.txt", encoding='utf-8') as file:
@@ -10,10 +11,10 @@ input_data_first = [item.split("|")[1].strip() for item in data]
 input_data_second = [item for item in data]
 input_values = [2, 3, 4, 7]
 input_values_dict = {2:1, 3:7, 4:4, 7:8}
-number_of_oc = []
+number_of_oc:list(int) = []
 
 
-def part_one():
+def part_one() -> int:
     sum_of_values = 0
     for row in input_data_first:
         array_row = row.split(" ")
@@ -25,10 +26,10 @@ def part_one():
 def sort_by_char(input:str) -> str:
     return ''.join(sorted(input))
 
-def get_by_size(dict, size):
+def get_by_size(dict: TypedDict, size: int) -> list(str):
     return [s for s in dict if len(s) == size]
 
-def find_substring(string, substring, stop=None):
+def find_substring(string: str, substring: str, stop:bool=None) -> bool:
     count = 0
     max_count = len(substring)
     for s in substring:
@@ -38,7 +39,7 @@ def find_substring(string, substring, stop=None):
                 return True
             
 
-def part_two():
+def part_two() -> int:
     for value in input_data_second:
         new_mapping_dict = {}
         left_side = value.split("|")[0].strip().split(" ")
@@ -61,7 +62,6 @@ def part_two():
                     new_mapping_dict[sort_by_char(string)] = 5
                 elif find_substring(get_by_size(left_side, 7)[0], string):
                     new_mapping_dict[sort_by_char(string)] = 2
-            
         
         c = 0
         final_number = ""

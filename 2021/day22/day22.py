@@ -1,4 +1,5 @@
 import re
+from typing import Tuple
 
 
 with open("2021/day22/input.txt") as file:
@@ -7,11 +8,10 @@ with open("2021/day22/input.txt") as file:
 pattern_for_instructions = '^(on|off) x=(-?\d+)..(-?\d+),y=(-?\d+)..(-?\d+),z=(-?\d+)..(-?\d+)'
 cuboids = []
 
-
-def split_cuboids(cuboid):
+def split_cuboids(cuboid:int) -> list(int):
     return cuboid[-2:]
 
-def intersect_cuboids(cuboids):
+def intersect_cuboids(cuboids: list(int)) -> None:
     if len(cuboids) > 1:
         return (cuboids[1][0] <= cuboids[0][1] and cuboids[0][0] <= cuboids[1][1]) \
                 and (cuboids[1][2] <= cuboids[0][3] and cuboids[0][2] <= cuboids[1][3]) \
@@ -22,7 +22,7 @@ def intersect_cuboids(cuboids):
 divided_cuboids = []
 on_off = []
 
-def divide_cuboids(second, divided_cuboids, on_off):
+def divide_cuboids(second: list(int), divided_cuboids: list(int), on_off: str) -> Tuple[list(int), list(int)]:
     final_cuboids = []
 
     if len(divided_cuboids) == 0:
@@ -87,7 +87,6 @@ def divide_cuboids(second, divided_cuboids, on_off):
     divided_cuboids = final_cuboids[:]
     return final_cuboids, divided_cuboids
      
-        
 
 for line in data:
     result = re.match(pattern_for_instructions, line)
@@ -106,26 +105,12 @@ for line in data:
     cuboid = list(int(item) for item in merged_data[1:])
     cuboids.append(cuboid)
 
-
-
 for i, cuboid in enumerate(cuboids):
     final, divided_cuboids =  divide_cuboids(cuboid, divided_cuboids, on_off[i])
 
 
 volume = 0
-
-
 for cuboid_coord in divided_cuboids:
     volume += (cuboid_coord[1] - cuboid_coord[0]+1) * (cuboid_coord[3] - cuboid_coord[2]+1) * (cuboid_coord[5] - cuboid_coord[4]+1)
 
-print(volume)
-   
-  
-    
-    
-    
-
-
-    
-    
-    
+print(volume)   

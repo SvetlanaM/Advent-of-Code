@@ -1,22 +1,23 @@
 
 import math
+from typing import Tuple
 
 with open("2021/day18/input.txt") as file:
     data = file.read().splitlines()
 
 class Pair:
-    left_literal = None
-    left_pair = None 
-    right_literal = None
-    right_pair = None
-    right_neighbour = None
-    left_neighbour = None
+    left_literal:int = None
+    left_pair:str = None 
+    right_literal:int = None
+    right_pair:str = None
+    right_neighbour:list(str) = None
+    left_neighbour:list(str) = None
     
 
-    def __init__(self, parent):
+    def __init__(self, parent) -> None:
         self.parent = parent
 
-    def explode(self, depth = 1):
+    def explode(self, depth:int = 1) -> None:
         if depth > 4:
             if self.left_neighbour is not None:
                 if self.left_neighbour.right_literal is not None:
@@ -52,7 +53,7 @@ class Pair:
         if self.right_pair is not None:
             self.right_pair.explode(depth + 1)
             
-    def split_left(self):
+    def split_left(self) -> None:
         self.left_pair = Pair(self)
         self.left_pair.left_literal = math.floor(self.left_literal/2)
         self.left_pair.right_literal = math.ceil(self.left_literal/2)
@@ -69,7 +70,7 @@ class Pair:
             self.left_pair.right_neighbour = self
             self.left_neighbour = self.left_pair
 
-    def split_right(self):
+    def split_right(self) -> None:
         self.right_pair = Pair(self)
         self.right_pair.left_literal = math.floor(self.right_literal/2)
         self.right_pair.right_literal = math.ceil(self.right_literal/2)
@@ -86,7 +87,7 @@ class Pair:
             self.right_pair.left_neighbour = self
             self.right_neighbour = self.right_pair
 
-    def split(self, depth = 1):
+    def split(self, depth:int = 1) -> bool:
         if self.left_literal is not None and int(self.left_literal) > 9:
             self.split_left()
             self.explode(depth)
@@ -107,7 +108,7 @@ class Pair:
         
         return False
 
-    def reduce_number(self):
+    def reduce_number(self) -> None:
         self.show_print()
         print('')
         self.explode()
@@ -118,7 +119,7 @@ class Pair:
             print("")
             pass
         
-    def first_pair(self):
+    def first_pair(self) -> None:
         if self.left_literal is not None:
             return self
         else:
@@ -130,7 +131,7 @@ class Pair:
         else:
             return self.right_pair.last_pair()
 
-    def __add__(self, o):
+    def __add__(self, o:int) -> None:
         new_root = Pair(None)
         new_root.left_pair = self
         new_root.right_pair = o
@@ -144,7 +145,7 @@ class Pair:
         o.parent = new_root
         return new_root
 
-    def show_print(self):
+    def show_print(self) -> None:
         print("[", end ="")
         if self.left_literal is not None:
             print(self.left_literal, end ="")
@@ -157,7 +158,7 @@ class Pair:
             self.right_pair.show_print()     
         print("]", end ="")
 
-    def calculate_magnitude(self):
+    def calculate_magnitude(self) -> int:
         final_sum = 0
         if self.left_pair is not None:
             final_sum += self.left_pair.calculate_magnitude() * 3
@@ -172,7 +173,7 @@ class Pair:
 
         
 
-def create_pair(pair: Pair, input: str, last_pair: Pair):
+def create_pair(pair: Pair, input: str, last_pair: Pair) -> Tuple[list(int), Pair]:
 
     if input[0] == '[':
         pair.left_pair = Pair(pair)

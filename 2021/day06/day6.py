@@ -1,7 +1,8 @@
 from collections import Counter
 from collections import OrderedDict
 import time
-start_time = time.time()
+
+start_time:float = time.time()
 
 with open("input_6.txt", encoding='utf-8') as file:
     data = file.read().splitlines()[0].split(",")
@@ -9,7 +10,7 @@ with open("input_6.txt", encoding='utf-8') as file:
 data = [int(line) for line in data]
 
 def task6():
-    ordered_dict = OrderedDict()
+    ordered_dict= OrderedDict()
     fishCounter = Counter()
     for item in data:
         fishCounter[item] += 1

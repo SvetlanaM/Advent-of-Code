@@ -9,27 +9,26 @@ numbers = re.findall(r'[-]?\d+', data)
 
 input_array = [int(str(number)) for number in numbers]
 x_min, x_max, y_max, y_min = input_array
-
 max_possible_point = (y_max*(y_max+1))/2
 
 print("part1:", max_possible_point)
-
 print(x_min)
+
 array_of_x_numbers = []
 array_of_all_combinations = []
 
 
-def get_step_result(number):
+def get_step_result(number: int) -> int:
   return (number * (number+1)) / 2
 
-def get_min_acceptable_value():
+def get_min_acceptable_value() -> list(int):
   for i in range (0, abs(y_max)):
     temp_result = get_step_result(i)
     if temp_result in range(x_min, x_max):
       array_of_x_numbers.append(i)
 
 
-def check_point_position(x, y):
+def check_point_position(x: int, y: int) -> list(int):
   down_from_point = (x-y)-1
   down_pos = get_step_result(down_from_point)
   y_pos = get_step_result(y)
@@ -45,7 +44,7 @@ for i in array_of_x_numbers:
 get_min_acceptable_value()
 
 
-def fit_target_area(pos_x, pos_y, x1, y1):
+def fit_target_area(pos_x: int, pos_y: int, x1: int, y1: int) -> bool:
   x = 0
   y = 0
 
@@ -61,7 +60,7 @@ def fit_target_area(pos_x, pos_y, x1, y1):
 
     return False
 
-def find_target():
+def find_target() -> int:
     v_x_min = array_of_x_numbers[-1] + 1
 
  

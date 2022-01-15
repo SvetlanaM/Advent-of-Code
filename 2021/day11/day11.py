@@ -1,14 +1,15 @@
 from itertools import product
+
 with open("2021/day11/input.txt", encoding='utf-8') as file:
     data = file.read().splitlines()
+
 data = [int(line) for line in data]
 input_array = [list(map(int,str(line))) for line in data]
-
 number_of_flash = 0
 stacked_list = []
 
 
-def update_number(x, y):
+def update_number(x: int, y: int) -> None:
     if input_array[x][y] != 0:
         input_array[x][y] += 1
 
