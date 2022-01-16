@@ -23,7 +23,5 @@ def part2():
         result = temp_dict['('] - temp_dict[')']
         if result == -1:
             print(i+1)
-            return i
-
 
 part2()
