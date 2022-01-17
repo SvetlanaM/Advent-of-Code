@@ -22,6 +22,6 @@ def part2():
         temp_dict[d] += 1
         result = temp_dict['('] - temp_dict[')']
         if result == -1:
-            print(i+1)
+            return i+1
 
-part2()
+print(part2())
