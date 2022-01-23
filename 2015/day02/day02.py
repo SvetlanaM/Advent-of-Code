@@ -22,13 +22,11 @@ def smallest_calculation(square):
 
 
 def part1(): 
-    squared_sums = list(map(make_calculation, data))
-    total = reduce(lambda x, y: x+y, squared_sums)
+    total = reduce(lambda x, y: x+y, list(map(make_calculation, data)))
     return total
 
 def part2():
-    min_sums = list(map(smallest_calculation, data))
-    total = reduce(lambda x, y: x+y, min_sums)
+    total = reduce(lambda x, y: x+y, list(map(smallest_calculation, data)))
     return total
 
 print("Total:", part1())
