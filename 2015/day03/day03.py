@@ -20,13 +20,8 @@ def part1(data):
 
 
 def part2():
-    santa_instructions = []
-    robo_santa_instructions = []
-    for i, move in enumerate(data):
-        if i % 2 == 0:
-            santa_instructions.append(move)
-        else:
-            robo_santa_instructions.append(move)
+    santa_instructions = data[::1]
+    robo_santa_instructions = data[1::2]
     _, santas = part1(santa_instructions)
     _, robos = part1(robo_santa_instructions)
     return len(set(santas + robos))
