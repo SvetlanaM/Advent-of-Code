@@ -9,16 +9,13 @@ def part1(data):
     for move in data:
         if move == '^':
             x += 1
-            coordinations.append((x, y))
         if move == 'v':
             x -= 1
-            coordinations.append((x, y))
         if move == '>':
             y += 1
-            coordinations.append((x, y))
         if move == '<':
             y -= 1
-            coordinations.append((x, y))
+        coordinations.append((x, y))
     return len(set(coordinations)), coordinations
 
 
