@@ -1,10 +1,10 @@
 from collections import Counter
 
 with open("2015/day01/input.txt") as file:
-    data = file.read().splitlines()[0]
+    data:str = file.read().splitlines()[0]
 
-def part1():
-    array_by_items = []
+def part1() -> None:
+    array_by_items:list(str) = []
 
     for d in data:
         array_by_items.append(d)
@@ -14,9 +14,9 @@ def part1():
 part1()
 
 
-def part2():
-    result = 0
-    i = 0
+def part2() -> int:
+    result:int = 0
+    i:int = 0
     while result != -1:
         result =  result + 1 if data[i] == "(" else result-1
         i += 1
