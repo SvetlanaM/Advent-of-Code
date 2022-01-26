@@ -15,5 +15,5 @@ const createHash = (numOfZeros:number, key:string = secretKey):number => {
     return counter
 }
 
-console.log("Part1: ", createHash(5))
-console.log("Part2: ", createHash(6))
+console.log("Part1:", createHash(5))
+console.log("Part2:", createHash(6))
