@@ -72,6 +72,6 @@ const getNumOfNiceStrings2 = (inputData:string[]):number => {
 }
 
 console.log("Part 1:", getNumOfNiceStrings(inputData))
-console.log("Part2:", getNumOfNiceStrings2(inputData))
+console.log("Part 2:", getNumOfNiceStrings2(inputData))
 
 
