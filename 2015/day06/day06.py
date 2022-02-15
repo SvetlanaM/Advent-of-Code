@@ -1,6 +1,5 @@
 import re
 import itertools
-from collections import Counter
 
 with open("2015/day06/input.txt") as file:
     data = file.read().splitlines()
