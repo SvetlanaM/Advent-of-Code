@@ -1,5 +1,6 @@
 import re
 import itertools
+from collections import Counter 
 
 with open("2015/day06/input.txt") as file:
     data = file.read().splitlines()
@@ -36,9 +37,9 @@ def part1() -> int:
     return len(result_set)
 
 def part2() -> int:
-    result_list = list(itertools.product(range(0, 0), repeat=2))
+    result_list = []
     removed_list = []
-
+    
     for line in data:
         result = re.match(pattern_for_instructions, line)
         grouped_data = list(result.groups())
@@ -47,22 +48,21 @@ def part2() -> int:
             temp_list = generate_new(min_x, min_y, max_x, max_y)
             result_list += temp_list
         elif state == 'turn off':
-            removed_list += generate_new(min_x, min_y, max_x, max_y)
+            temp_list = generate_new(min_x, min_y, max_x, max_y)
+            c = list((Counter(result_list) & Counter(temp_list)).elements())
+            removed_list += c
         elif state == 'toggle':
+            temp_list = generate_new(min_x, min_y, max_x, max_y)
             temp_list = generate_new(min_x, min_y, max_x, max_y)
             result_list += temp_list
             result_list += temp_list
     
-    for x in removed_list:
-        try:
-            result_list.remove(x)
-        except ValueError:
-            pass
-
-    return len(result_list)
+    c = list((Counter(result_list) & Counter(removed_list)).elements())
+    return len(result_list) - len(c)
+    
 
 
-print("Part 1:", part1())
+# print("Part 1:", part1())
 print("Part 2:", part2())
 
 
