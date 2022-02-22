@@ -41,7 +41,7 @@ const getWireNumber = (string:string):number => {
     : Number(string)
 }
 
-function setWire(op: (x:number, y:number) => number, ...item:string[]) {
+const setWire = (op: (x:number, y:number) => number, ...item:string[]) => {
     const [x, y, z] = item
     let bitwiseResult = op(getWireNumber(x), getWireNumber(y))
     wiresDictionary.set(z, bitwiseResult)
