@@ -7,14 +7,6 @@ let inputInstructions = data.split("\n").map((item) => item.split(regexPattern).
 let wiresDictionary = new Map<string, number>();
 const stack = [...inputInstructions]
 
-enum BitwiseOperations {
-    AND = 'AND',
-    OR = 'OR',
-    LSHIFT = 'LSHIFT',
-    RSHIFT = 'RSHIFT',
-    NOT = 'NOT',
-}
-
 const Operators = {
       AND: (x:number, y:number) => x & y,
       OR: (x:number, y:number) => x | y,
@@ -55,28 +47,9 @@ const part1 = (stack:string[][]):number => {
 
         if (bitwiseOperator) {  
             if (canComputeWire(bitwiseOperator, item)) {
-                switch(bitwiseOperator) { 
-                    case BitwiseOperations.AND: {
-                        setWire(Operators[bitwiseOperator], x, z, w)
-                        break
-                    }
-                    case BitwiseOperations.OR: { 
-                        setWire(Operators[bitwiseOperator], x, z, w)
-                        break
-                    }
-                    case BitwiseOperations.LSHIFT: {
-                        setWire(Operators[bitwiseOperator], x, z, w)
-                        break
-                    }
-                    case BitwiseOperations.RSHIFT: { 
-                        setWire(Operators[bitwiseOperator], x, z, w)
-                        break
-                    } 
-                    case BitwiseOperations.NOT: { 
-                        setWire(Operators[bitwiseOperator], y, '', z)
-                        break
-                    } 
-                }
+                bitwiseOperator === 'NOT'
+                ? setWire(Operators[bitwiseOperator], y, '', z)  
+                : setWire(Operators[bitwiseOperator], x, z, w) 
             }
             else {
                 stack.push(item)
