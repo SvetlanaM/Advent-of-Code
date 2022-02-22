@@ -12,7 +12,7 @@ const Operators = {
       OR: (x:number, y:number) => x | y,
       LSHIFT: (x:number, y:number) => (x << y) & 65535,
       RSHIFT: (x:number, y:number) => x >> y,
-      NOT: (x:number) => (~getWireNumber(String(x))) & 65535,
+      NOT: (x:number) => (~(x)) & 65535,
 }
 
 const hasBitwiseOperator = (item:string[]):string => {
