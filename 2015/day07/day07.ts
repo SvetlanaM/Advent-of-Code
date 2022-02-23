@@ -58,7 +58,7 @@ const part1 = (stack:string[][]):number => {
             wiresDictionary.has(x) 
             ? wiresDictionary.set(y, wiresDictionary.get(x) || 0)
             : (isNumeric(x)) 
-            ? wiresDictionary.set(item[1], Number(x))
+            ? wiresDictionary.set(y, Number(x))
             :
             stack.push(item)
         }
@@ -68,7 +68,7 @@ const part1 = (stack:string[][]):number => {
 }
 
 const part2 = ():number => {
-    let indexOfB = inputInstructions.findIndex((item) => item[1] === 'b')
+    const indexOfB = inputInstructions.findIndex((item) => item[1] === 'b')
     inputInstructions[indexOfB][0] = String(wiresDictionary.get('a'))
     wiresDictionary.clear()
     const stack2 = [...inputInstructions]
