@@ -55,12 +55,9 @@ const part1 = (stack:string[][]):number => {
                 stack.push(item)
             }
         } else {
-            wiresDictionary.has(x) 
-            ? wiresDictionary.set(y, wiresDictionary.get(x) || 0)
-            : (isNumeric(x)) 
-            ? wiresDictionary.set(y, Number(x))
-            :
-            stack.push(item)
+            findWireNumber(wiresDictionary, x)
+            ? wiresDictionary.set(y, getWireNumber(x) || 0)
+            : stack.push(item)
         }
     } while (!wiresDictionary.has('a'))
 
