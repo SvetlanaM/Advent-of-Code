@@ -1,5 +1,4 @@
-from pyclbr import Function
-
+from typing import Callable
 
 with open("2015/day08/input.txt") as file:
     data = file.read().splitlines()
@@ -7,13 +6,13 @@ with open("2015/day08/input.txt") as file:
 def get_raw_string_len(string:str) -> int:
     return len(r"{}".format(string))
 
-def get_string_len(string: str) -> int:
+def get_string_len(string:str) -> int:
     return len(eval(string))
 
 def get_new_string_len(string:str) -> int:
     return get_raw_string_len(string) + r"{}".format(string).count('"') + 2 + r"{}".format(string).count('\\')
 
-def day08(fn1:Function, fn2:Function) -> int:
+def day08(fn1:Callable, fn2:Callable) -> int:
     total = 0
     for line in data:
         total += fn1(line) - fn2(line)
