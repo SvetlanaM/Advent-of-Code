@@ -12,7 +12,7 @@ def create_graph() -> DefaultDict[str, Dict[str, int]]:
 
 create_graph()
 
-def calculate_path(cities:Dict[str, int], selected_city: str, visited: list[str], calculated_path: int = 0) -> None:
+def calculate_path(cities:Dict[str, int], selected_city: str, visited: list[str] = [], calculated_path: int = 0) -> None:
     if set(cities[selected_city]).issubset(visited):
         total.append(calculated_path)
         return
@@ -24,7 +24,7 @@ def calculate_path(cities:Dict[str, int], selected_city: str, visited: list[str]
           visited.pop()
 
 for city in graph:
-  calculate_path(graph, city, [])
+  calculate_path(graph, city)
 
 print("Part 1:", min(total))
 print("Part 2:", max(total))
