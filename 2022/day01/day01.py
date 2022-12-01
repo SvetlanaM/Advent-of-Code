@@ -21,7 +21,7 @@ def main(file_path: str) -> tuple[int, int]:
 	assert calculate_max_calories(parse_data('2022/day01/test_input.txt')) == 24000
 	assert calculate_top_3(parse_data('2022/day01/test_input.txt')) == 45000
 
-	input_data: list[str] = parse_data(file_path)
+	input_data = parse_data(file_path)
 	max_calories = calculate_max_calories(input_data)
 	top_3 = calculate_top_3(input_data)
 	return max_calories, top_3
