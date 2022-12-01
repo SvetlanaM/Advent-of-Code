@@ -11,11 +11,14 @@ def calculate_calories(data: list[str]) -> list[int]:
 	
 	return sorted(elf_calories)
 
+
 def calculate_max_calories(data: list[str]) -> int:
 	return max(calculate_calories(data))
 
+
 def calculate_top_3(data: list[str]) -> int:
 	return sum(calculate_calories(data)[-3:])
+
 
 def main(file_path: str) -> tuple[int, int]:
 	assert calculate_max_calories(parse_data('2022/day01/test_input.txt')) == 24000
