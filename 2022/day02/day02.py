@@ -19,7 +19,8 @@ end_round_dict = {'X' : 'LOST', 'Y' : 'DRAW', 'Z' : 'WIN', 'A' : 'ROCK', 'B' : '
 
 def parse_data(file_path: str) -> list[str]:
     with open(file_path, encoding='utf-8') as file:
-        return file.read().splitlines()
+        data = file.read().splitlines()
+        return [line.replace(" ", "") for line in data]
 
 
 def get_end_round_result(shape: str) -> int:
@@ -71,12 +72,12 @@ def generate_combinations(combinations: list[str] = combinations) -> dict[str, i
         
 
 def compute_end_game_result(data: list[str]) -> int:
-    return sum([get_end_round_result(line.replace(" ", "")) for line in data])
+    return sum([get_end_round_result(line) for line in data])
 
 
 def compute_game_result(data: list[str]) -> int:
     generate_combinations()
-    return sum([game_combinations[line.replace(" ", "")] for line in data])
+    return sum([game_combinations[line] for line in data])
 
 
 def main(file_path: str) -> tuple[int, int]:
