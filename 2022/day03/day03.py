@@ -3,6 +3,7 @@ relative_a = 1
 relative_A = ord('A') - 27
 combinations = 3
 
+
 def parse_data(file_path: str) -> list[str]:
     with open(file_path, encoding='utf-8') as file:
         return file.read().splitlines()
