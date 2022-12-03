@@ -1,8 +1,7 @@
 INPUT_FILE = '2022/day03/test_input.txt'
-relative_a = 1
+relative_a = ord('a') - 1
 relative_A = ord('A') - 27
 combinations = 3
-
 
 def parse_data(file_path: str) -> list[str]:
     with open(file_path, encoding='utf-8') as file:
@@ -14,7 +13,7 @@ def get_converted_dataset(data: list[str]) -> list[tuple[str, ...]]:
 
 
 def get_score(char: str) -> int:
-    return ord(char) - ord('a') + relative_a if char.islower() else ord(char) - relative_A
+    return ord(char) - relative_a if char.islower() else ord(char) - relative_A
 
 
 # at work, i would never do this to anybody :D this python one liners killing me :D
