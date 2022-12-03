@@ -9,7 +9,7 @@ def parse_data(file_path: str) -> list[str]:
         return file.read().splitlines()
 
 
-def get_converted_dataset(data: list[str]) -> list[tuple[str, str, str]]:
+def get_converted_dataset(data: list[str]) -> list[tuple[str, ...]]:
     return list(zip(data[0::combinations], data[1::combinations], data[2::combinations]))
 
 
@@ -23,7 +23,7 @@ def get_sum_of_priorities(data: list[str]) -> int:
 
 
 # another killer one liner, next i will do old good multiline for loop
-def get_sum_of_3_combinations(data: list[tuple[str, str, str]]) -> int:
+def get_sum_of_3_combinations(data: list[tuple[str, ...]]) -> int:
     return sum([get_score(''.join(set(i1).intersection(i2).intersection(i3))) for i1, i2, i3 in data])
 
 
