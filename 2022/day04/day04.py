@@ -30,7 +30,12 @@ def get_sum_of_pairs(sections: list[list[str]]) -> tuple[int, int]:
             sum_of_unique += 1
     
     return sum_of_overlap, sum_of_unique
-    
+ 
+ 
+# tests 
+assert convert_dataset(['2-4', '6-8']) == ({2, 3, 4}, {6, 7, 8})
+assert get_sum_of_pairs(parse_data(INPUT_FILE))[0] == 2
+assert get_sum_of_pairs(parse_data(INPUT_FILE))[1] == 4   
 
 def main(file_path: str) -> None:
     input_data = parse_data(file_path)
@@ -41,9 +46,3 @@ def main(file_path: str) -> None:
 
 if __name__ == "__main__":
     raise SystemExit(main(INPUT_FILE.replace("test_", "")))
-
-   
-# tests 
-assert convert_dataset(['2-4', '6-8']) == ({2, 3, 4}, {6, 7, 8})
-assert get_sum_of_pairs(parse_data(INPUT_FILE))[0] == 2
-assert get_sum_of_pairs(parse_data(INPUT_FILE))[1] == 4
