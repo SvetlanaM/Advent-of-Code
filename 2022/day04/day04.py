@@ -37,6 +37,7 @@ assert convert_dataset(['2-4', '6-8']) == ({2, 3, 4}, {6, 7, 8})
 assert get_sum_of_pairs(parse_data(INPUT_FILE))[0] == 2
 assert get_sum_of_pairs(parse_data(INPUT_FILE))[1] == 4   
 
+
 def main(file_path: str) -> None:
     input_data = parse_data(file_path)
     sum_of_pairs, sum_of_single = get_sum_of_pairs(input_data)
