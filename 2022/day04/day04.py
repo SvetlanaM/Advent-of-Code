@@ -32,7 +32,7 @@ def get_sum_of_pairs(sections: list[list[str]]) -> tuple[int, int]:
     return sum_of_overlap, sum_of_unique
     
 
-def main(file_path: str) -> tuple[int, int]:
+def main(file_path: str) -> None:
     input_data = parse_data(file_path)
     sum_of_pairs, sum_of_single = get_sum_of_pairs(input_data)
     print("Part 1:", sum_of_pairs)
