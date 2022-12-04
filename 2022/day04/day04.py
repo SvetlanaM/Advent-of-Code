@@ -26,7 +26,7 @@ def get_sum_of_pairs(sections: list[list[str]]) -> tuple[int, int]:
         if s1.issubset(s2) or s2.issubset(s1):
             sum_of_overlap += 1
         
-        if len(s1.intersection(s2)) > 0:
+        if s1.intersection(s2):
             sum_of_unique += 1
     
     return sum_of_overlap, sum_of_unique
@@ -35,13 +35,12 @@ def get_sum_of_pairs(sections: list[list[str]]) -> tuple[int, int]:
 def main(file_path: str) -> tuple[int, int]:
     input_data = parse_data(file_path)
     sum_of_pairs, sum_of_single = get_sum_of_pairs(input_data)
-    return sum_of_pairs, sum_of_single
+    print("Part 1:", sum_of_pairs)
+    print("Part 2:", sum_of_single)
 
 
 if __name__ == "__main__":
-    part_1, part_2 = main(INPUT_FILE.replace("test_", ""))
-    print(f"Part 1: {part_1}")
-    print(f"Part 2: {part_2}")
+    raise SystemExit(main(INPUT_FILE.replace("test_", "")))
 
    
 # tests 
