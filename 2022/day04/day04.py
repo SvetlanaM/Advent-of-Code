@@ -1,8 +1,6 @@
 import re 
 
 INPUT_FILE = '2022/day04/test_input.txt'
-pattern_for_instructions = '^(\d+)-(\d+)'
-
 
 def parse_data(file_path: str) -> list[str]:
     with open(file_path, encoding='utf-8') as file:
@@ -11,8 +9,7 @@ def parse_data(file_path: str) -> list[str]:
 
 
 def convert_dataset(section: list[str]) -> tuple[list[int], list[int]]:
-    section1, section2 = re.match(pattern_for_instructions, section[0]).groups(), \
-                         re.match(pattern_for_instructions, section[1]).groups()
+    section1, section2 = re.findall('\d+', section[0]), re.findall('\d+', section[1])
     s1_list = list(range(int(section1[0]), int(section1[1]) + 1))
     s2_list = list(range(int(section2[0]), int(section2[1]) + 1))
     return s1_list, s2_list
