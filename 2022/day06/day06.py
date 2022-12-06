@@ -5,7 +5,7 @@ from typing import Iterable
 INPUT_FILE = '2022/day06/test_input.txt'
 
 
-def parse_data(file_path: str) -> list[str]:
+def parse_data(file_path: str) -> str:
     with open(file_path, encoding='utf-8') as file:
         return file.read()
 
