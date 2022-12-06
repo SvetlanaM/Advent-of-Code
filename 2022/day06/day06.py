@@ -21,7 +21,7 @@ def sliding_window(iterable: Iterable, n: int) -> Iterable:
         yield tuple(window)
         
 
-def compute(data: list[str], position: int = 4) -> int:
+def compute(data: str, position: int = 4) -> int:
     for index, window in enumerate(sliding_window(data, position)):
         if len(set(window)) == position:
             return index + position
