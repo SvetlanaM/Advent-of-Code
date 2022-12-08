@@ -14,6 +14,7 @@ def parse_data(file_path: str) -> list[str]:
     with open(file_path, encoding='utf-8') as file:
         return file.read().splitlines()
 
+
 def list_of_directories(data: list[str]) -> list[Directory]:
     directories:list[Directory] = []
     parents:list[Directory] = []
@@ -39,7 +40,6 @@ def list_of_directories(data: list[str]) -> list[Directory]:
 def compute_total_disk_space(directories: list[Directory]) -> int:
     less = list(filter(lambda elem: elem.size <= 100000, directories))
     return reduce(lambda a, b: a + b, list(map(lambda a: a.size, less)))
-
 
 
 def find_folder_size_for_deletion(directories: list[Directory]) -> int:
