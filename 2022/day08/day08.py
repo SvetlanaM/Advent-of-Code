@@ -25,7 +25,7 @@ def move_on_grid(rows: list[int], columns: list[int], row_index: int, col_index:
     return {'right': right, 'left': left, 'up': up, 'down': down}
 
 
-def calculate_sum_of_visible_trees(forrest: dict[str: list[int]]) -> int:
+def calculate_sum_of_visible_trees(forrest: tuple([list[int], list[int]])) -> int:
     rows, columns = forrest
     num_of_visibles = 0
     
@@ -54,7 +54,7 @@ def calculate(height: int, arr: list[int]) -> int:
     return count
 
 
-def calculate_highest_view(forrest: dict[str: list[int]]) -> int:
+def calculate_highest_view(forrest: tuple([list[int], list[int]])) -> int:
     rows, columns = forrest
     max_distance = 0
     
