@@ -67,6 +67,8 @@ def calculate_highest_view(forrest: dict[str: list[int]]) -> int:
             distance_to_left = calculate(current_height, forrest_dict['left'])
             distance_to_top = calculate(current_height, reversed(forrest_dict['up']))
             distance_to_down = calculate(current_height, forrest_dict['down'])
+            
+            # i do not need it here, but i wanted to try :D 
             if total_distance := distance_to_right * distance_to_left * distance_to_top * distance_to_down:
                 max_distance = max(total_distance, max_distance)
             
