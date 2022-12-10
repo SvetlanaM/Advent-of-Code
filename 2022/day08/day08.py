@@ -47,6 +47,7 @@ def calculate(height: int, arr: list[int]) -> int:
         count += 1
         if i >= height:
             break
+        
     return count
 
 
