@@ -13,6 +13,10 @@ def generate_grid(data: list[str]) -> tuple([list[int], list[int]]):
 
 
 def move_on_grid(rows: list[int], columns: list[int], row_index: int, col_index: int) -> dict[str: list[int]]:
+    """
+    Return dictionary of all items from the current position to the end of the row/column
+    in every direction.
+    """
     right = rows[row_index][:col_index]
     left = rows[row_index][col_index+1:]
     up = columns[col_index][:row_index]
