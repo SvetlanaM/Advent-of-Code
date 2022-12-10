@@ -29,13 +29,12 @@ def calculate_sum_of_visible_trees(forrest: dict[str: list[int]]) -> int:
         for col_index, col in enumerate(row):
             current_height = col
             forrest_dict = move_on_grid(rows, columns, row_index, col_index)
-
+            
             try:
-                if current_height > max(forrest_dict['right']) or current_height > max(forrest_dict['left']) \
-                    or current_height > max(forrest_dict['up']) or current_height > max(forrest_dict['down']):
+                if any(max(x) < current_height for x in forrest_dict.values()):
                     num_of_visibles += 1
             except ValueError:
-                num_of_visibles += 1
+                num_of_visibles += 1 # ignore this hack :D i am also lazy programmer 
                 continue
             
     return num_of_visibles
@@ -62,20 +61,23 @@ def calculate_highest_view(forrest: dict[str: list[int]]) -> int:
             
             distance_to_right = calculate(current_height, reversed(forrest_dict['right']))
             distance_to_left = calculate(current_height, forrest_dict['left'])
-            distance_top = calculate(current_height, reversed(forrest_dict['up']))
+            distance_to_top = calculate(current_height, reversed(forrest_dict['up']))
             distance_to_down = calculate(current_height, forrest_dict['down'])
-            if total_distance := distance_to_right * distance_to_left * distance_top * distance_to_down:
+            if total_distance := distance_to_right * distance_to_left * distance_to_top * distance_to_down:
                 max_distance = max(total_distance, max_distance)
             
     return max_distance
 
 
 #tests
-assert calculate_sum_of_visible_trees(generate_grid(parse_data(INPUT_FILE))) == 21
-assert calculate_highest_view(generate_grid(parse_data(INPUT_FILE))) == 8
+def test() -> None:
+    assert calculate_sum_of_visible_trees(generate_grid(parse_data(INPUT_FILE))) == 21
+    assert calculate_highest_view(generate_grid(parse_data(INPUT_FILE))) == 8
 
 
 def main(file_path: str) -> None:
+    test()
+    
     input_data = parse_data(file_path)
     forrest = generate_grid(input_data)
     num_of_visible_trees = calculate_sum_of_visible_trees(forrest)
