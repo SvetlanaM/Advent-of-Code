@@ -7,7 +7,7 @@ def parse_data(file_path: str) -> list[str]:
 
   
 def generate_grid(data: list[str]) -> tuple([list[int], list[int]]):
-    rows = list([list(map(int, x)) for x in [list(word) for word in data]])
+    rows = list([list(map(int, x)) for x in [list(tree) for tree in data]])
     cols = list(list(zip(*rows)))
     return rows, cols
 
