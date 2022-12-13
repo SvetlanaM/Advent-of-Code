@@ -32,7 +32,7 @@ class Rope:
             case Direction.Up.value:
                 self.head[1] += distance
                 for i in range(tail_y+1, self.head[1]):
-                        self.visited.append((self.head[0], i))
+                    self.visited.append((self.head[0], i))
             case Direction.Down.value:
                 self.head[1] -= distance
                 for i in reversed(range(self.head[1]+1, tail_y)):
