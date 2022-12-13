@@ -16,11 +16,11 @@ class Direction(Enum):
     
 class Rope:
     head:list[int] = []
-    visited:list[tuple[int, int]] = [(0, 0)]
     tail:list[int] = []
+    visited:list[tuple[int, int]] = [(0, 0)]
     
     
-    def __init__(self, head, tail):
+    def __init__(self, head:list[int], tail:list[int]) -> None:
         self.head = head 
         self.tail = tail
 
@@ -66,7 +66,7 @@ class Rope:
             self.update_last_tail()
     
        
-    def print_result(self):
+    def print_result(self) -> None:
         print(len(set(self.visited)))
         
             
