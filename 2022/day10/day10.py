@@ -11,7 +11,6 @@ def parse_data(file_path: str) -> list[str]:
 def generate_cycle_list(data: list[str]) -> list[int]:
     for line in data:
         if line[-1].isdigit():
-            # CPU_cycles.append(0)
             CPU_cycles.extend([0, int(re.findall('-?\d+', line)[0])])
         else:
             CPU_cycles.append(0)
