@@ -31,7 +31,7 @@ def calculate_sum_of_cpu_cycles(cpu_cycles: list[int]) -> int:
     return sum(cumulated_sums) 
 
 def render_crt_image(cpu_cycles: list[int]) -> None:
-    crt = [["."] * 40 for _ in range(6)]
+    crt = [["░"] * 40 for _ in range(6)]
     iteration = 0
     current_index = 40
     
@@ -45,7 +45,7 @@ def render_crt_image(cpu_cycles: list[int]) -> None:
             current_index += 40
         
     for line in crt:
-        print("".join([c if c == '▓' else '░' for c in line]))
+        print("".join([c for c in line]))
  
    
 def main(file_path: str) -> None:
@@ -53,7 +53,7 @@ def main(file_path: str) -> None:
     cpu_cycles = generate_cycle_list(input_data)
     sum_of_cpu_cycles = calculate_sum_of_cpu_cycles(cpu_cycles)
     print("Part 1:", "Total sum of CPU cycles is", sum_of_cpu_cycles)
-    print("Part 2: Rendered CTR image is")
+    print("Part 2: Rendered CRT image is")
     render_crt_image(cpu_cycles)
     
     
