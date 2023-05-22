@@ -16,8 +16,10 @@ def generate_cycle_list(data: list[str]) -> list[int]:
             CPU_cycles.append(0)
     
     return CPU_cycles
-        
+
+   
 def calculate_sum_of_cpu_cycles(cpu_cycles: list[int]) -> int:
+    print(cpu_cycles)
     current_index = 20
     cumulated_sums = []
     
