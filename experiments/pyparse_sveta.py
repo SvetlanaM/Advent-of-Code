@@ -23,8 +23,8 @@ def main(data: str):
 
     value = special_value | s_expression | key | number_tuple
     valueWithSelections = pp.Dict(pp.Group(key + COLON + value), COMMA).setParseAction()
-    grammar = pp.Group(pp.Suppress(LPAREN) + pp.delimitedList(valueWithSelections) + \
-              pp.Suppress(RPAREN))
+    grammar = pp.Suppress(LPAREN) + pp.delimitedList(valueWithSelections) + \
+              pp.Suppress(RPAREN)
 
     s_expression << (
         pp.Suppress("List") + pp.Suppress("(") +
