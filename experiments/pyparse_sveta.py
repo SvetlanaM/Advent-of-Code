@@ -9,11 +9,11 @@ def decode_url(encoded_string: str) -> str:
     return urllib.parse.unquote(encoded_string)
 
 
-def main(data: str):
+def main(data: str) -> None:
     s_expression = pp.Forward()
     key = pp.Word(pp.alphanums + "_")
-    number = pp.Word(pp.nums)
     key_with_colon = key + pp.Literal(":")
+    number = pp.Word(pp.nums)
     number_tuple = number + COMMA + number | number
     special_value = pp.Combine(pp.ZeroOrMore(key_with_colon |
                                              pp.Literal("(") |
@@ -22,8 +22,8 @@ def main(data: str):
                                              ) + pp.Literal(")"))
 
     value = special_value | s_expression | key | number_tuple
-    valueWithSelections = pp.Dict(pp.Group(key + COLON + value), COMMA).setParseAction()
-    grammar = pp.Group(pp.Suppress(LPAREN) + pp.delimitedList(valueWithSelections) + pp.Suppress(RPAREN))
+    value_with_selections = pp.Dict(pp.Group(key + COLON + value), COMMA).setParseAction()
+    grammar = pp.Group(pp.Suppress(LPAREN) + pp.delimitedList(value_with_selections) + pp.Suppress(RPAREN))
 
     s_expression << (
         pp.Optional("List") + pp.Suppress("(") +
