@@ -1,7 +1,6 @@
 import pyparsing as pp
 import urllib.parse
 
-
 LPAREN, RPAREN, COLON, COMMA = map(pp.Suppress, "():,")
 
 
@@ -9,6 +8,12 @@ def decode_url(encoded_string: str) -> str:
     return urllib.parse.unquote(encoded_string)
 
 
+"""
+Goal: Transform data to JSON format
+"""
+
+
+# TODO: Merge list to the keys and add support for List with one (
 def main(data: str) -> None:
     s_expression = pp.Forward()
     key = pp.Word(pp.alphanums + "_")
@@ -22,13 +27,13 @@ def main(data: str) -> None:
                                              ) + pp.Literal(")"))
 
     value = special_value | s_expression | key | number_tuple
-    value_with_selections = pp.Dict(pp.Group(key + COLON + value), COMMA).setParseAction()
+    value_with_selections = pp.Dict(pp.Group(key + COLON + value), COMMA)
     grammar = pp.Group(pp.Suppress(LPAREN) + pp.delimitedList(value_with_selections) + pp.Suppress(RPAREN))
 
     s_expression << (
-        pp.Optional("List") + pp.Suppress("(") +
-        pp.ZeroOrMore(pp.delimitedList(grammar)) +
-        pp.Suppress(")")
+            pp.Optional("List") + pp.Suppress("(") +
+            pp.ZeroOrMore(pp.delimitedList(grammar)) +
+            pp.Suppress(")")
     )
 
     print(grammar.parse_string(decode_url(data))[0])
@@ -44,4 +49,3 @@ if __name__ == "__main__":
     main(
         "(facetSelections:List((type:SOURCING_CHANNEL,valuesWithSelections:List()),(type:CANDIDATE_HIRING_STATE,valuesWithSelections:List((value:urn%3Ali%3Ats_hiring_state%3A%28urn%3Ali%3Ats_contract%3A454254206%2C12771247229%29,selected:true,selected:false,required:false),(value:urn%3Ali%3Ats_hiring_state%3A%28urn%3Ali%3Ats_contract%3A454254206%2C12771251051%29,selected:true,negated:false,required:false),(value:urn%3Ali%3Ats_hiring_state%3A%28urn%3Ali%3Ats_contract%3A454254206%2C12771252348%29,selected:true,negated:false,required:false),(value:urn%3Ali%3Ats_hiring_state%3A%28urn%3Ali%3Ats_contract%3A454254206%2C12771251050%29,selected:true,negated:false,required:false)))),capSearchSortBy:HIRING_CANDIDATE_LAST_UPDATED_DATE,hiringProjects:List((text:python,entity:urn%3Ali%3Ats_hiring_project%3A%28urn%3Ali%3Ats_contract%3A454254206%2C1042246722%29)))"
     )
-

@@ -2,16 +2,7 @@ import urllib.parse
 
 
 def main(data: str):
-    new_string = ''
-    for char in data:
-        if char == '[':
-            new_string += '('
-        elif char == ",":
-            new_string += ":"
-        elif char == "]":
-            new_string += ")"
-        else:
-            new_string += char
+    new_string = data.replace("{", "(").replace("[", "(").replace("]", ")").replace(" ", "")
 
     print(new_string)
 
